@@ -27,8 +27,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
     lateinit var binding: FragmentCalendarBinding
     val exerciseAdapter = ExerciseAdapter()
     private lateinit var scheduleDB: DatabaseReference
-    private lateinit var routineNameDB: DatabaseReference
-    private lateinit var routineDB: DatabaseReference
     private val scheduleList = mutableListOf<ExerciseItem>()
     private val scheduleListener = object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -40,7 +38,10 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
 
-        override fun onChildRemoved(snapshot: DataSnapshot) {}
+        override fun onChildRemoved(snapshot: DataSnapshot) {
+            exerciseAdapter.submitList(null)
+            exerciseAdapter.notifyDataSetChanged()
+        }
 
         override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
 
@@ -76,16 +77,6 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
             .child("schedules")
             .child(binding.dateTextView.text.toString())
 
-        routineDB = Firebase.database.reference
-            .child("Users")
-            .child(user_uid)
-            .child("routines")
-
-        routineNameDB = Firebase.database.reference
-            .child("Users")
-            .child(user_uid)
-            .child("routineNames")
-
 
         binding.dateTextView.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -110,6 +101,10 @@ class CalendarFragment : Fragment(R.layout.fragment_calendar) {
         scheduleDB.addChildEventListener(scheduleListener)
 
         binding.todayRoutineRecyclerView.adapter = exerciseAdapter
+
+        binding.deleteButton.setOnClickListener {
+            scheduleDB.removeValue()
+        }
     }
 
 

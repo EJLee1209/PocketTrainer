@@ -40,10 +40,10 @@
         app:layout_constraintEnd_toEndOf="@id/calendarViewPager"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/editButton"
+        android:id="@+id/deleteButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/edit"
+        android:background="@drawable/trash"
         app:layout_constraintTop_toTopOf="@id/dateTextView"
         app:layout_constraintBottom_toBottomOf="@id/dateTextView"
         app:layout_constraintEnd_toStartOf="@id/addButton"
