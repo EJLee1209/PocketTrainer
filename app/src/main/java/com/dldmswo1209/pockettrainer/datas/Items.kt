@@ -4,7 +4,27 @@ data class ExerciseItem(
     var name: String,
     var target: String,
     var isSelected: Boolean
-)
+){
+    constructor(): this("","",false)
+}
+
+
+data class RoutineItem(
+    var name: String,
+    var target: String,
+    var routineName: String,
+    var isSelected: Boolean
+){
+    constructor(): this("","","",false)
+}
+
+
+data class Routine(
+    var name : String
+){
+    constructor(): this("")
+
+}
 
 data class UserInfo(
     val uid: String,
@@ -16,7 +36,7 @@ data class UserInfo(
 // 가슴운동 리스트
 val chestExerciseList by lazy {
     mutableListOf(
-        ExerciseItem("덤벨 로우 플라이","가슴", false),
+        ExerciseItem("덤벨 로우 플라이","가슴",false),
         ExerciseItem("덤벨 체스트 플라이","가슴",false),
         ExerciseItem("덤벨 풀오버","가슴",false),
         ExerciseItem("덤벨 해머 프레스","가슴",false),

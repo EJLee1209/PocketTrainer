@@ -55,7 +55,6 @@ class MonthFragment : Fragment(R.layout.fragment_month) {
             time
         }
         currentDate = date
-        Log.d("testt",currentDate.toString())
         // 포맷 적용
         var datetime: String = SimpleDateFormat(
             mContext.getString(R.string.calendar_year_month_format),
@@ -65,7 +64,6 @@ class MonthFragment : Fragment(R.layout.fragment_month) {
         val calendarLayout = view.findViewById<LinearLayoutCompat>(R.id.calendarLayout)
         val gridLayoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
         val calendarAdapter = CalendarAdapter(requireContext(), calendarLayout, currentDate) {
-            Log.d("testt", it)
             (activity as MainActivity).calendarFragment.binding.dateTextView.text = it
         }
 

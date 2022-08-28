@@ -59,8 +59,6 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
             val month = String.format("%02d",date.month+1)
             val year = date.year+1900
 
-            Log.d("testt", "year : $year")
-            Log.d("testt", "month : ${month}")
 
             // 날짜 표시
             itemCalendarDateText.setText(data.toString())
