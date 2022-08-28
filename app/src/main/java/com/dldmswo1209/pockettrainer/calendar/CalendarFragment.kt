@@ -25,7 +25,10 @@ import java.time.LocalDate
 
 class CalendarFragment : Fragment(R.layout.fragment_calendar) {
     lateinit var binding: FragmentCalendarBinding
-    val exerciseAdapter = ExerciseAdapter()
+    val exerciseAdapter = ExerciseAdapter { exerciseItem, isChecked ->
+        exerciseItem.isComplete = isChecked
+        scheduleDB.child(exerciseItem.name).setValue(exerciseItem)
+    }
     private lateinit var scheduleDB: DatabaseReference
     private val scheduleList = mutableListOf<ExerciseItem>()
     private val scheduleListener = object: ChildEventListener{

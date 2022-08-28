@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/login_button.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/menu_calendar.xml" value="0.113" />
+        <entry key="app/src/main/res/drawable/schedule_background.xml" value="0.121" />
         <entry key="app/src/main/res/drawable/select_item.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/selector_menu.xml" value="0.113" />
         <entry key="app/src/main/res/layout/activity_add_routine.xml" value="0.17553660074869792" />

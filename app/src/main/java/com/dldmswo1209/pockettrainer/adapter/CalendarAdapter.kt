@@ -10,9 +10,17 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.dldmswo1209.pockettrainer.MainActivity
 import com.dldmswo1209.pockettrainer.R
 import com.dldmswo1209.pockettrainer.calendar.FurangCalendar
+import com.dldmswo1209.pockettrainer.datas.ExerciseItem
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -51,14 +59,44 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayoutComp
     inner class CalendarItemHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
         var itemCalendarDateText: TextView = itemView!!.findViewById(R.id.dayTextView)
-        val background = itemView!!.findViewById<ImageView>(R.id.calendarItemBackground)
+        val circle = itemView!!.findViewById<ImageView>(R.id.calendarItemCircle)
 
         fun bind(data: Int, position: Int, context: Context) {
             val firstDateIndex = furangCalendar.prevTail
             val lastDateIndex = dataList.size - furangCalendar.nextHead - 1
             val month = String.format("%02d",date.month+1)
             val year = date.year+1900
+            val scheduleDB = Firebase.database.reference
+                .child("Users")
+                .child((context as MainActivity).user_uid)
+                .child("schedules")
 
+
+            var yearMonth: String = SimpleDateFormat(
+                context.getString(R.string.year_month_format),
+                Locale.KOREA
+            ).format(date)
+
+            if(position in firstDateIndex..lastDateIndex) {
+                val yearMonthDay = "${yearMonth}-${data}"
+                scheduleDB.child(yearMonthDay).addChildEventListener(object: ChildEventListener{
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        val exercise = snapshot.getValue(ExerciseItem::class.java)?:return
+                        circle.isVisible = true
+                    }
+
+                    override fun onChildChanged(
+                        snapshot: DataSnapshot,
+                        previousChildName: String?
+                    ) {}
+                    override fun onChildRemoved(snapshot: DataSnapshot) {
+                        circle.isVisible = false
+                    }
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+
+            }
 
             // 날짜 표시
             itemCalendarDateText.setText(data.toString())

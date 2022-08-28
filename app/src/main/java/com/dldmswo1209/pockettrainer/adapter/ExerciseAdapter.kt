@@ -8,11 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dldmswo1209.pockettrainer.databinding.ExerciseItemBinding
 import com.dldmswo1209.pockettrainer.datas.ExerciseItem
 
-class ExerciseAdapter: ListAdapter<ExerciseItem,ExerciseAdapter.ViewHolder>(diffUtil) {
+class ExerciseAdapter(val itemClicked: (ExerciseItem, Boolean) -> (Unit)): ListAdapter<ExerciseItem,ExerciseAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ExerciseItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(exerciseItem: ExerciseItem){
             binding.exerciseNameTextView.text = exerciseItem.name
+            binding.checkbox.isChecked = exerciseItem.isComplete
+            binding.checkbox.setOnClickListener {
+                itemClicked(exerciseItem, binding.checkbox.isChecked)
+            }
+
         }
     }
 

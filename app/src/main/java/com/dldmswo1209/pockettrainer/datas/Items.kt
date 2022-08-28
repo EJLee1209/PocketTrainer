@@ -3,9 +3,10 @@ package com.dldmswo1209.pockettrainer.datas
 data class ExerciseItem(
     var name: String,
     var target: String,
-    var isSelected: Boolean
+    var isSelected: Boolean = false,
+    var isComplete: Boolean = false
 ){
-    constructor(): this("","",false)
+    constructor(): this("","",false, false)
 }
 
 
@@ -36,32 +37,32 @@ data class UserInfo(
 // 가슴운동 리스트
 val chestExerciseList by lazy {
     mutableListOf(
-        ExerciseItem("덤벨 로우 플라이","가슴",false),
-        ExerciseItem("덤벨 체스트 플라이","가슴",false),
-        ExerciseItem("덤벨 풀오버","가슴",false),
-        ExerciseItem("덤벨 해머 프레스","가슴",false),
-        ExerciseItem("덤벨 프레스","가슴",false),
-        ExerciseItem("디클라인 덤벨 프레스","가슴",false),
-        ExerciseItem("디클라인 벤치 프레스","가슴",false),
-        ExerciseItem("디클라인 체스트 프레스","가슴",false),
-        ExerciseItem("디클라인 푸시업","가슴",false),
-        ExerciseItem("딥스(가슴)","가슴",false),
-        ExerciseItem("머신 딥스(가슴)","가슴",false),
-        ExerciseItem("버터플라이","가슴",false),
-        ExerciseItem("벤치프레스","가슴",false),
-        ExerciseItem("스미스 머신 벤치프레스","가슴",false),
-        ExerciseItem("어시스티드 딥스(가슴)","가슴",false),
-        ExerciseItem("인클라인 덤벨 체스트 플라이","가슴",false),
-        ExerciseItem("인클라인 덤벨 해머 프레스","가슴",false),
-        ExerciseItem("인클라인 덤벨 프레스","가슴",false),
-        ExerciseItem("인클라인 벤치 프레스","가슴",false),
-        ExerciseItem("인클라인 체스트 프레스","가슴",false),
-        ExerciseItem("인클라인 푸시업","가슴",false),
-        ExerciseItem("체스트 프레스","가슴",false),
-        ExerciseItem("케이블 크로스 오버","가슴",false),
-        ExerciseItem("펙 덱 플라이","가슴",false),
-        ExerciseItem("푸시업","가슴",false),
-        ExerciseItem("플레이트 프레스","가슴",false)
+        ExerciseItem("덤벨 로우 플라이","가슴",false, false),
+        ExerciseItem("덤벨 체스트 플라이","가슴",false, false),
+        ExerciseItem("덤벨 풀오버","가슴",false, false),
+        ExerciseItem("덤벨 해머 프레스","가슴",false, false),
+        ExerciseItem("덤벨 프레스","가슴",false, false),
+        ExerciseItem("디클라인 덤벨 프레스","가슴",false, false),
+        ExerciseItem("디클라인 벤치 프레스","가슴",false, false),
+        ExerciseItem("디클라인 체스트 프레스","가슴",false, false),
+        ExerciseItem("디클라인 푸시업","가슴",false, false),
+        ExerciseItem("딥스(가슴)","가슴",false, false),
+        ExerciseItem("머신 딥스(가슴)","가슴",false, false),
+        ExerciseItem("버터플라이","가슴",false, false),
+        ExerciseItem("벤치프레스","가슴",false, false),
+        ExerciseItem("스미스 머신 벤치프레스","가슴",false, false),
+        ExerciseItem("어시스티드 딥스(가슴)","가슴",false, false),
+        ExerciseItem("인클라인 덤벨 체스트 플라이","가슴",false, false),
+        ExerciseItem("인클라인 덤벨 해머 프레스","가슴",false, false),
+        ExerciseItem("인클라인 덤벨 프레스","가슴",false, false),
+        ExerciseItem("인클라인 벤치 프레스","가슴",false, false),
+        ExerciseItem("인클라인 체스트 프레스","가슴",false, false),
+        ExerciseItem("인클라인 푸시업","가슴",false, false),
+        ExerciseItem("체스트 프레스","가슴",false, false),
+        ExerciseItem("케이블 크로스 오버","가슴",false, false),
+        ExerciseItem("펙 덱 플라이","가슴",false, false),
+        ExerciseItem("푸시업","가슴",false, false),
+        ExerciseItem("플레이트 프레스","가슴",false, false)
     )
 }
 
